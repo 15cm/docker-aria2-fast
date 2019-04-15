@@ -38,7 +38,9 @@ RUN rm -rf /build \
 ADD run.sh /run.sh
 RUN chmod a+x /run.sh
 
-VOLUME ["/config"]
+ENV CONFIG_PATH=/config/aria2.conf
+
+VOLUME ["/config", "/download"]
 
 EXPOSE 6800 6801 6802
 
