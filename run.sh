@@ -1,8 +1,6 @@
 #!/bin/bash
 
-umask 002
-
-[ -f "${CONFIG_PATH} " ] || touch "${CONFIG_PATH}"
+[ -f "${CONFIG_PATH}" ] || touch "${CONFIG_PATH}"
 
 args=(
   --conf-path="${CONFIG_PATH}"
@@ -10,11 +8,13 @@ args=(
   --enable-rpc=true
   --listen-port=6801
   --dht-listen-port=6802
-  --dir=/download
-  --save-session=/var/log/aria2/aria2.session
-  --input-file=/var/log/aria2/aria2.session
-  --log=/var/log/aria2/aria2.log
+  --dir=${DOWNLOAD_PATH}
+  --save-session=${LOG_DIR}/aria2.session
+  --input-file=${LOG_DIR}/aria2.session
+  --log=${LOG_DIR}/aria2.log
   "${RPC_SECRET:+--rpc-secret=$RPC_SECRET}"
 )
+
+umask 0002
 
 /usr/sbin/aria2c ${args[*]}
