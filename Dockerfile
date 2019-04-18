@@ -42,6 +42,9 @@ RUN rm -rf /build \
 
 VOLUME ["/config"]
 
+# Managed by docker volume
+VOLUME ["/var/log/aria2"]
+
 EXPOSE 6800 6801 6802
 
 ADD run.sh /run.sh
