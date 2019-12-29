@@ -1,11 +1,12 @@
 From 15cm/s6-archlinux:latest
 
 ARG PKG_NAME=aria2-fast
+ARG TMP_INSTALL_LIST=/tmp/tmp_install_list.txt
 
 RUN pacman -Sy --noconfirm
 
-RUN pacman -S --noconfirm \
-    base-devel
+RUN pacman -Sp base-devel --print-format '%n' --needed > ${TMP_INSTALL_LIST} \
+    && pacman -S --noconfirm base-devel
 
 RUN useradd --no-create-home --shell=/bin/false builduser \
     && usermod -L builduser \
@@ -26,8 +27,9 @@ WORKDIR /
 # Clean up
 RUN userdel builduser \
     && rm -rf /build \
-    && pacman --noconfirm -Rns $(pacman -Qtdq) \
-    && pacman --noconfirm -Scc
+    ; pacman --noconfirm -Rnu - < ${TMP_INSTALL_LIST} \
+    ; pacman --noconfirm -Rns $(pacman -Qtdq) \
+    ; pacman --noconfirm -Scc
 
 COPY root/ /
 
