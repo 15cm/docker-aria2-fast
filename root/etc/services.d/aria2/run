@@ -1,0 +1,20 @@
+#!/usr/bin/with-contenv bash
+
+args=(
+  --rpc-listen-port=6800
+  --enable-rpc=true
+  --listen-port=6801
+  --dht-listen-port=6802
+  --dir=/downloads/default
+  --save-session=/downloads/aria2.session
+  --input-file=/downloads/aria2.session
+)
+
+if [ -f /config/aria2.conf ]; then
+  args+=(--conf-path=/config/aria2.conf)
+else
+  args+=(--no-conf)
+fi
+[ -z ${RPC_SECRET} ] || args+=(--rpc-secret=${RPC_SECRET})
+
+s6-setuidgid abc /usr/bin/aria2c ${args[*]}
