@@ -35,4 +35,4 @@ COPY root/ /
 
 EXPOSE 6800 6801 6802
 
-VOLUME ["/config", "/downloads"]
+VOLUME ["/config", "/downloads", "/data"]

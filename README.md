@@ -4,7 +4,6 @@ Docker image of [aria2-fast](https://aur.archlinux.org/packages/aria2-fast).
 # Usage
 ## Volumes
 - `/config`: Aria2c reads config file from `/config/aria2.conf`
-- `/downloads`: Aria2c downloads to `/downloads/default` by default. `aria2.session` is saved at `/downloads/aria2.session`.
 
 ## ENV Vars
 - `TZ`: timezone
@@ -14,5 +13,3 @@ Docker image of [aria2-fast](https://aur.archlinux.org/packages/aria2-fast).
 
 ## Ports
 - 6800: for jsonrpc
-- 6801: for BT
-- 6802: for BT DHT

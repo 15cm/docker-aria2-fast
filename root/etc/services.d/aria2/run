@@ -1,13 +1,13 @@
 #!/usr/bin/with-contenv bash
 
 args=(
-  --rpc-listen-port=6800
-  --enable-rpc=true
-  --listen-port=6801
-  --dht-listen-port=6802
-  --dir=/downloads/default
-  --save-session=/downloads/aria2.session
-  --input-file=/downloads/aria2.session
+  # --rpc-listen-port=6800
+  # --enable-rpc=true
+  # --listen-port=6801
+  # --dht-listen-port=6802
+  # --dir=/downloads/default
+  # --save-session=/downloads/aria2.session
+  # --input-file=/downloads/aria2.session
 )
 
 if [ -f /config/aria2.conf ]; then
