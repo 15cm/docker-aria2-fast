@@ -3,8 +3,7 @@ From 15cm/s6-archlinux:latest
 ARG PKG_NAME=aria2-fast
 ARG TMP_INSTALL_LIST=/tmp/tmp_install_list.txt
 
-RUN pacman -Sy --noconfirm
-
+RUN pacman -Syu --noconfirm
 RUN pacman -Sp base-devel --print-format '%n' --needed > ${TMP_INSTALL_LIST} \
     && pacman -S --noconfirm base-devel
 

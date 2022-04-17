@@ -1,5 +1,7 @@
 #!/usr/bin/with-contenv bash
 
+umask ${UMASK_SET:-022}
+
 args=(
   # --rpc-listen-port=6800
   # --enable-rpc=true
@@ -17,4 +19,4 @@ else
 fi
 [ -z ${RPC_SECRET} ] || args+=(--rpc-secret=${RPC_SECRET})
 
-s6-setuidgid abc /usr/bin/aria2c ${args[*]}
+exec s6-setuidgid abc /usr/bin/aria2c ${args[*]}
